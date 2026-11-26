@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "name": "collaboration-engineering-evaluation",
+  "controller": "scripted",
+  "default_repetitions": 3,
+  "cases": [
+    "role_contract",
+    "idempotent_creation",
+    "durable_claim",
+    "run_isolation",
+    "dependency_and_verdict",
+    "artifact_integrity",
+    "unknown_outcome",
+    "event_cursor",
+    "workflow_resume"
+  ],
+  "workflow_fixture": "Fixed two-file checkout repair and owned localhost port conflict",
+  "workflow_http_inputs": 30,
+  "http_input_seed": 42,
+  "scope": "Eight direct engineering boundary scenarios plus one fixed official-Harness multi-session workflow; repetitions are not additional unique tasks.",
+  "scoring": "Compare final persisted state, artifact integrity, independent patch acceptance, HTTP outputs and required tool ordering. Negative cases pass only when forbidden action is rejected.",
+  "not_measured": [
+    "Real LLM autonomous task success",
+    "General intent routing",
+    "Dynamic Skill loading",
+    "Long-term semantic memory",
+    "Real model token or cost savings",
+    "Multi-agent versus single-agent improvement",
+    "OS sandbox isolation",
+    "Remote GPU deployment in the collaboration workflow"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "updated_at": "2026-11-26",
+  "version": "0.11.0",
+  "items": [
+    {
+      "area": "server and resource management",
+      "status": "implemented"
+    },
+    {
+      "area": "inference delivery and independent acceptance",
+      "status": "implemented with bounded recipes"
+    },
+    {
+      "area": "cross-node online PD and Ray",
+      "status": "in progress"
+    },
+    {
+      "area": "general GPU profiling and operator optimization",
+      "status": "in progress"
+    },
+    {
+      "area": "multi-platform and long-running validation",
+      "status": "planned"
+    }
+  ]
+}

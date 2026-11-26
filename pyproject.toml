@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "repopilot-agent"
+version = "0.11.0"
+description = "Auditable issue repair and AI infrastructure environment agents"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "typer>=0.15,<1", "pydantic>=2.10,<3", "httpx>=0.28,<1",
+  "tree-sitter>=0.25,<0.26", "tree-sitter-python>=0.25,<0.26",
+  "networkx>=3.4,<4", "python-dotenv>=1.0,<2",
+  "deepseek-harness-sdk==0.2.1rc2",
+  "paramiko>=3.5,<5",
+  "cryptography>=50,<51",
+  "mcp==1.30.0", "tiktoken==0.14.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3,<9", "ruff>=0.11,<1"]
+baseline = ["mini-swe-agent==2.4.6"]
+
+[project.scripts]
+repopilot = "repopilot.cli:app"
+infrapilot = "infra_pilot.cli:app"
+pilot-harness = "pilot_host.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pilot_infra = ["usage_guide.json", "architecture.json", "intent_catalog.json"]
+pilot_eval = ["approval_authorizer.mjs"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+cache_dir = ".cache/pytest"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["reports", "pilot-data"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]

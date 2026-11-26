@@ -1,0 +1,38 @@
+{
+  "protocol_version": "1.0",
+  "frozen_date": "2026-11-09",
+  "workload": "SmolLM2-135M-Instruct pinned CUDA124/LoRA recipe, all nine stages required",
+  "controller": "rules through official DeepSeek Harness SDK and MCP; not an LLM",
+  "cache_condition": "dedicated copy of existing venv and model; cached setup, not cold install",
+  "baseline_commit": "20aaa03",
+  "pilot_repetitions": 1,
+  "confirmation_repetitions": 3,
+  "ordering_seed": 20261109,
+  "train_steps": 24,
+  "requests_per_successful_task": 6,
+  "request_concurrency": 2,
+  "request_output_tokens": 24,
+  "task_timeout_seconds": 3600,
+  "stage_timeout_seconds": 300,
+  "scenarios": [
+    {"id": "normal", "title": "缓存环境完整训推部署", "recovery_supported": true, "expected_diagnosis": null, "fault": "none", "source": "docs/INFRA_REFERENCES.md"},
+    {"id": "port_conflict", "title": "服务端口被占用", "recovery_supported": true, "expected_diagnosis": "port_conflict", "fault": "real loopback socket listener owned by this task", "source": "https://github.com/vllm-project/vllm/issues/43206"},
+    {"id": "cache_corrupt", "title": "权重缓存截断", "recovery_supported": true, "expected_diagnosis": null, "fault": "truncate dedicated copied model.safetensors to 4096 bytes; verify hash then redownload", "source": "https://github.com/huggingface/huggingface_hub/issues/4196"},
+    {"id": "dependency_missing", "title": "PEFT 依赖缺失", "recovery_supported": true, "expected_diagnosis": null, "fault": "move peft package and dist-info out of the dedicated copied venv; pip must reinstall pinned 0.15.2", "source": "docs/INFRA_REFERENCES.md"},
+    {"id": "lost_ack", "title": "后台启动响应丢失", "recovery_supported": true, "expected_diagnosis": null, "fault": "discard the actual inference job launch response at controller boundary; inspect journaled job ID", "source": "project durable job journal requirement"},
+    {"id": "ssh_drop", "title": "后台运行中 SSH 断连", "recovery_supported": true, "expected_diagnosis": null, "fault": "close real SSH transport after inference job starts; no controller restart or external repair", "source": "project remote job recovery requirement"},
+    {"id": "cuda_oom", "title": "任务显存预算不足", "recovery_supported": false, "expected_diagnosis": "cuda_oom", "fault": "task-local allocator cap 0.0001 of one A100, actual CUDA model allocation must fail", "source": "docs/INFRA_REFERENCES.md"},
+    {"id": "nccl_interface", "title": "NCCL 指定不存在网卡", "recovery_supported": false, "expected_diagnosis": "collective_timeout", "fault": "job-local NCCL_SOCKET_IFNAME=infrapilot_no_iface; real two-GPU all_reduce bootstrap failure", "source": "https://github.com/pytorch/pytorch/issues/115810"}
+  ],
+  "acceptance": [
+    "fresh task job IDs and all nine stages completed; no pending/active/failed job",
+    "independent process verifies dependency versions, pip check, pinned model SHA-256, CUDA/NCCL results",
+    "independent fresh adapter load generates nonempty text on CUDA; checkpoint exists at step 12",
+    "24 finite training losses and positive adapter delta, continuous/resumed max parameter error <=1e-6",
+    "six HTTP streaming samples with nonempty text and exactly 24 output tokens, zero failures",
+    "injected condition demonstrated; lost_ack/ssh_drop launched inference exactly once with the recorded ID",
+    "no worker/server from this workspace left running at task end"
+  ],
+  "metrics": ["strict overall completion with all boundary failures in denominator", "per-scenario completion", "supported scenario completion separately", "fault recovery rate over all seven injected scenarios", "diagnosis accuracy only over three prelabelled categories", "task duration p50/p95 using linear interpolation", "detected-fault-to-stage-complete MTTR", "duplicate inference launch count", "HTTP success, TTFT/TPOT p50/p95, aggregate generated tokens per request-window second", "peak CUDA allocated MiB", "Wilson 95% intervals as descriptive small-sample intervals"],
+  "limitations": "Controlled fault injection, one shared server, one pinned small model, deterministic controller. Repetitions are correlated, not random tasks from a production distribution. External issues inspire error classes; this is not reproduction of their full deployments. Pilot and confirmation results are never pooled. No cold-start, LLM quality, vLLM performance, multi-node RDMA, or generalized model accuracy claim."
+}

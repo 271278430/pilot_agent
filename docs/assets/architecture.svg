@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 346" role="img" aria-labelledby="title desc">
+  <title id="title">Pilot 系统架构</title>
+  <desc id="desc">从用户入口经 Harness 和领域服务到执行器，再通过独立验收返回结果。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#768fa9"/></marker>
+  </defs>
+  <rect width="1200" height="346" rx="24" fill="#f5f8fc"/>
+  <text x="45" y="53" fill="#17283d" font-family="sans-serif" font-size="24" font-weight="700">系统分层</text>
+  <text x="45" y="79" fill="#637b93" font-family="sans-serif" font-size="15">从用户决策到可核对的交付结果</text>
+  <g font-family="sans-serif">
+    <rect x="44" y="108" width="176" height="112" rx="14" fill="#fff" stroke="#c8d7e6"/>
+    <text x="62" y="145" fill="#14293f" font-size="19" font-weight="700">用户入口</text><text x="62" y="177" fill="#526a83" font-size="15">会话 · 表单 · 审阅</text>
+    <rect x="268" y="108" width="176" height="112" rx="14" fill="#fff" stroke="#c8d7e6"/>
+    <text x="286" y="145" fill="#14293f" font-size="19" font-weight="700">Harness</text><text x="286" y="177" fill="#526a83" font-size="15">会话 · 工具 · 专家</text>
+    <rect x="492" y="108" width="176" height="112" rx="14" fill="#e9f7f5" stroke="#68c8bb"/>
+    <text x="510" y="145" fill="#14293f" font-size="19" font-weight="700">领域服务</text><text x="510" y="177" fill="#526a83" font-size="15">资源 · 授权 · 任务</text>
+    <rect x="716" y="108" width="176" height="112" rx="14" fill="#fff" stroke="#c8d7e6"/>
+    <text x="734" y="145" fill="#14293f" font-size="19" font-weight="700">受限执行</text><text x="734" y="177" fill="#526a83" font-size="15">节点 · 容器 · 构建</text>
+    <rect x="940" y="108" width="216" height="112" rx="14" fill="#fff" stroke="#c8d7e6"/>
+    <text x="958" y="145" fill="#14293f" font-size="19" font-weight="700">独立验收</text><text x="958" y="177" fill="#526a83" font-size="15">服务身份 · 测试 · 证据</text>
+    <path d="M220 164 H260 M444 164 H484 M668 164 H708 M892 164 H932" fill="none" stroke="#768fa9" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="268" y="258" width="624" height="49" rx="11" fill="#e7edf4"/>
+    <text x="580" y="289" text-anchor="middle" fill="#415b76" font-size="15">会话历史、领域状态、任务日志和结果各自保存</text>
+  </g>
+</svg>

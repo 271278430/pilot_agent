@@ -1,0 +1,19 @@
+# Local credentials, state and outputs
+/.local/
+/.env
+/.venv/
+/.cache/
+/.pytest_cache/
+/.ruff_cache/
+/resources/
+/workspace/
+/workspaces/
+/runs/
+/reports/
+/upstream/
+**/node_modules/
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+/build/
+/dist/

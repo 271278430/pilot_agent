@@ -1,0 +1,19 @@
+{
+  "name": "repopilot-harness-runtime",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Pinned official DeepSeek Harness runtime for RepoPilot",
+  "dependencies": {
+    "@deepseek-ai/dsh": "0.2.2-rc.1",
+    "@deepseek-ai/dsh-client-ui-directory-picker-browse": "0.2.2-rc.1",
+    "@deepseek-ai/dsh-host-directory-picker-browse": "0.2.2-rc.1",
+    "@pilot/workspace": "file:plugins/workspace",
+    "@pilot/repo-tools": "file:plugins/repo-tools",
+    "@pilot/infra-tools": "file:plugins/infra-tools",
+    "@pilot/model-assets": "file:plugins/model-assets",
+    "@pilot/delivery": "file:plugins/delivery",
+    "@pilot/context": "file:plugins/context",
+    "@pilot/policy": "file:plugins/policy",
+    "@pilot/delivery-ui": "file:plugins/delivery-ui"
+  }
+}

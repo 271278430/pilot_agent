@@ -1,0 +1,10 @@
+{
+  "id": "replace-task-id",
+  "repo": "D:/path/to/your/python-repository",
+  "commit": "replace-with-a-fixed-commit-sha",
+  "issue": "Describe the observed failure, expected behavior and useful traceback here.",
+  "target": ["python", "-m", "pytest", "-q", "-p", "no:cacheprovider", "tests/test_target.py"],
+  "regression": ["python", "-m", "pytest", "-q", "-p", "no:cacheprovider", "tests"],
+  "image": "repopilot-python:0.1.0",
+  "source_roots": ["src"]
+}
