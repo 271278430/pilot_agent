@@ -17,7 +17,7 @@ DIRECTORIES = {
     "docker": "受限执行环境使用的镜像定义。",
     "docs": "项目架构、使用方法、开发约定和能力边界。",
     "docs/architecture": "根据架构目录生成的模块图，修改源目录后重新生成。",
-    "docs/assets": "README 使用的架构图和流程动画；动画由 `scripts/render_workflow.py` 生成。",
+    "docs/assets": "README 使用的界面预览、架构图和流程动画。",
     "evals": "固定评测协议与测试材料。",
     "evals/collaboration": "主控和专家协作的评测协议。",
     "evals/external": "外部代码修复评测使用的公开素材及其来源信息。",
@@ -110,7 +110,8 @@ FILES = {
     "architecture.json": "系统组件、关系与模块图的同源数据。",
     "usage_guide.json": "业务入口、步骤和权限说明的同源目录。",
     "intent_catalog.json": "业务意图及动作分类目录。",
-    "workflow.gif": "主页展示的四阶段工作流程动画。",
+    "workflow.gif": "主页展示的五阶段推理交付流程动画。",
+    "preview.webp": "使用演示数据截取的 Pilot 界面预览动画。",
     "architecture.svg": "主页展示的系统分层图。",
     "board.json": "当前开发事项和状态。",
     "real-task.example.json": "仓库修复任务的可编辑示例。",
@@ -126,6 +127,7 @@ FILES = {
     "FULL_TEST_CATALOG.md": "自动发现的 Python、Node 测试及辅助脚本目录。",
     "business_test_map.json": "业务功能到测试文件的机器可读映射。",
     "render_workflow.py": "生成主页流程动画，需安装 Pillow 和中文字体。",
+    "render_preview.py": "将演示界面截图合成为主页预览动画。",
     "update_directory_readmes.py": "生成或检查各目录的 README 索引。",
     "cpu_ray_gateway.py": "隔离 CPU Ray 实验使用的受限网络中继原型。",
 }
@@ -203,7 +205,21 @@ def render(path: Path) -> str:
     lines.extend(["## 文件", "", "| 文件 | 内容 |", "| --- | --- |", "| [README.md](README.md) | 本目录的用途和文件索引。 |"])
     lines.extend(f"| {link(file.name)} | {describe_file(file).replace(chr(10), ' ')} |" for file in files)
     lines.extend(["", "目录内容调整后，运行 `python scripts/update_directory_readmes.py` 更新索引。", ""])
-    return "\n".join(lines)
+    directory_index = "\n".join(lines)
+    if path == ROOT / ".github":
+        # GitHub displays .github/README.md ahead of the root README. Mirror the
+        # project introduction there, while keeping the directory index available.
+        project = (ROOT / "README.md").read_text(encoding="utf-8")
+
+        def from_github(match: re.Match) -> str:
+            target = match.group(2)
+            if target.startswith(("#", "/", "http://", "https://", "mailto:")):
+                return match.group(0)
+            return match.group(1) + "../" + target + match.group(3)
+
+        project = re.sub(r"(\]\()([^\s)]+)(\))", from_github, project)
+        return project.rstrip() + "\n\n<details>\n<summary>.github 目录文件</summary>\n\n" + directory_index + "\n</details>\n"
+    return directory_index
 
 
 def main() -> int:

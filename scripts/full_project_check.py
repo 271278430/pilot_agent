@@ -149,6 +149,7 @@ def full_run(report: Path) -> int:
         ("catalog", [python, str(Path(__file__)), "--check-catalog"]),
         ("business-matrix", [python, "scripts/business_test_matrix.py", "--check"]),
         ("directory-readmes", [python, "scripts/update_directory_readmes.py", "--check"]),
+        ("doc-links", [python, "scripts/check_doc_links.py"]),
         ("publication", [python, "scripts/check_publication.py"]),
         ("usage-guide", [python, "scripts/update_usage_guide.py", "--check"]),
         ("architecture", [python, "scripts/update_architecture.py", "--check"]),

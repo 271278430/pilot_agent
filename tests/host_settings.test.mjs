@@ -11,6 +11,7 @@ import {resolveChildAgentOptions} from '../harness/runtime/node_modules/@deepsee
 const privateRoot=fileURLToPath(new URL('../.local/',import.meta.url))
 const model=(extra={})=>({model_id:'scripted',base_url:'https://fixture.invalid/v1',context_window:32768,max_output_tokens:6000,auth_required:true,...extra})
 async function fixture(){
+ mkdirSync(privateRoot,{recursive:true})
  const root=mkdtempSync(join(privateRoot,'host-settings-test-'));mkdirSync(join(root,'runs/harness-inbox'),{recursive:true})
  const ctx=new Context(),keys=new Map([['REPOPILOT_API_KEY','fixture-secret-2']]);let rpc,selection=C.selection(model()),providers={apps:C.profile({...model(),credential_ref:'REPOPILOT_API_KEY'})},revision=1,idle=true,fail=false
  const actor={id:'root',status:'idle',model:{current:()=>actor.selected,select:s=>actor.selected=s},selected:selection}

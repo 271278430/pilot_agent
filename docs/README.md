@@ -7,7 +7,7 @@
 | 目录 | 内容 |
 | --- | --- |
 | [architecture](architecture/README.md) | 根据架构目录生成的模块图，修改源目录后重新生成。 |
-| [assets](assets/README.md) | README 使用的架构图和流程动画；动画由 `scripts/render_workflow.py` 生成。 |
+| [assets](assets/README.md) | README 使用的界面预览、架构图和流程动画。 |
 
 ## 文件
 

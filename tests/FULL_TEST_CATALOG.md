@@ -33,7 +33,7 @@ Python 测试脚本：82；Node 测试脚本：22；辅助脚本：7。
 - [test_delivery_engine_assets.py](test_delivery_engine_assets.py)：2 个测试定义；Model version evidence covers the tokenizer assets actually used by inference.
 - [test_delivery_terminal.py](test_delivery_terminal.py)：2 个测试定义
 - [test_deployment_scope.py](test_deployment_scope.py)：2 个测试定义；Release manifests must reject user/model/private paths before SSH access.
-- [test_directory_readmes.py](test_directory_readmes.py)：2 个测试定义；Directory inventories and Git exclusions must follow the published tree.
+- [test_directory_readmes.py](test_directory_readmes.py)：3 个测试定义；Directory inventories and Git exclusions must follow the published tree.
 - [test_distributed_cpu_relay.py](test_distributed_cpu_relay.py)：3 个测试定义；Failure boundaries for the isolated experimental two-host CPU relay.
 - [test_distributed_planning.py](test_distributed_planning.py)：25 个测试定义；Two-node topology and authorization preflight must fail closed.
 - [test_domain_evaluation.py](test_domain_evaluation.py)：10 个测试定义；Independent scoring, immutable admissions and public evidence boundaries.

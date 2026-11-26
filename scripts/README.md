@@ -14,6 +14,7 @@
 | [bootstrap_model_preview.py](bootstrap_model_preview.py) | Launch v2 on an idle GPU; never replace or stop the accepted v1 engine. |
 | [bootstrap_remote.py](bootstrap_remote.py) | Run only on the designated project server; record setup without host installs. |
 | [business_test_matrix.py](business_test_matrix.py) | Validate and render the business-to-regression map against the live catalogue. |
+| [check_doc_links.py](check_doc_links.py) | Check repository-local Markdown links and section anchors. |
 | [check_publication.py](check_publication.py) | Check staged source files for common private material before publication. |
 | [cleanup_project.py](cleanup_project.py) | Delete reviewed, unused project files only after verifying their saved preimage. |
 | [cpu_ray_gateway.py](cpu_ray_gateway.py) | 隔离 CPU Ray 实验使用的受限网络中继原型。 |
@@ -34,6 +35,7 @@
 | [prepare_ml_environment.py](prepare_ml_environment.py) | Provision the registered ML recipe inside the user-authorized root. |
 | [prepare_wasi.py](prepare_wasi.py) | Install a pinned, digest-checked CPython WASI runtime inside this project. |
 | [remote_project.py](remote_project.py) | Project-scoped SSH operations; never print credentials or delete outside this root. |
+| [render_preview.py](render_preview.py) | 将演示界面截图合成为主页预览动画。 |
 | [render_workflow.py](render_workflow.py) | 生成主页流程动画，需安装 Pillow 和中文字体。 |
 | [stage_infra.py](stage_infra.py) | Copy source to an isolated QA root; never switch the user's running Host. |
 | [start_local.ps1](start_local.ps1) | 启动 本地操作脚本。 |

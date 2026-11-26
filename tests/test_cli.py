@@ -1,3 +1,4 @@
+from click import unstyle
 from typer.testing import CliRunner
 
 from repopilot.cli import app
@@ -13,4 +14,4 @@ def test_documented_task_option_and_missing_credentials(monkeypatch):
 def test_local_execution_needs_explicit_selection():
     result = CliRunner().invoke(app, ["run", "--task", "missing.json", "--environment", "local"])
     assert result.exit_code != 0
-    assert "--allow-local" in result.output
+    assert "--allow-local" in unstyle(result.output)

@@ -24,6 +24,22 @@ def test_directory_index_detects_new_files(tmp_path, monkeypatch):
     assert indexes.main() == 1
 
 
+def test_github_readme_keeps_homepage_and_directory_index(tmp_path, monkeypatch):
+    (tmp_path / "README.md").write_text(
+        "# Pilot\n\n![预览](docs/assets/preview.webp)\n\n[指南](docs/guide.md) [外部](https://example.com)\n",
+        encoding="utf-8",
+    )
+    folder = tmp_path / ".github"
+    (folder / "workflows").mkdir(parents=True)
+    monkeypatch.setattr(indexes, "ROOT", tmp_path)
+    result = indexes.render(folder)
+    assert result.startswith("# Pilot\n")
+    assert "![预览](../docs/assets/preview.webp)" in result
+    assert "[指南](../docs/guide.md)" in result
+    assert "[外部](https://example.com)" in result
+    assert "[workflows](workflows/README.md)" in result
+
+
 @pytest.mark.skipif(shutil.which("git") is None, reason="Git is required")
 def test_ignore_private_state_without_ignoring_workspace_plugin(tmp_path):
     root = Path(__file__).resolve().parents[1]

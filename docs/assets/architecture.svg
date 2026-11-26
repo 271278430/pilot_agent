@@ -1,25 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 346" role="img" aria-labelledby="title desc">
-  <title id="title">Pilot 系统架构</title>
-  <desc id="desc">从用户入口经 Harness 和领域服务到执行器，再通过独立验收返回结果。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 510" role="img" aria-labelledby="title desc">
+  <title id="title">Pilot 任务交付架构</title>
+  <desc id="desc">用户提出目标并审阅方案，Pilot 主控协调专家和领域服务，任务执行后由独立验收形成报告。</desc>
   <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#768fa9"/></marker>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0e192c"/><stop offset="1" stop-color="#142a3d"/></linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#76b8b9"/></marker>
   </defs>
-  <rect width="1200" height="346" rx="24" fill="#f5f8fc"/>
-  <text x="45" y="53" fill="#17283d" font-family="sans-serif" font-size="24" font-weight="700">系统分层</text>
-  <text x="45" y="79" fill="#637b93" font-family="sans-serif" font-size="15">从用户决策到可核对的交付结果</text>
-  <g font-family="sans-serif">
-    <rect x="44" y="108" width="176" height="112" rx="14" fill="#fff" stroke="#c8d7e6"/>
-    <text x="62" y="145" fill="#14293f" font-size="19" font-weight="700">用户入口</text><text x="62" y="177" fill="#526a83" font-size="15">会话 · 表单 · 审阅</text>
-    <rect x="268" y="108" width="176" height="112" rx="14" fill="#fff" stroke="#c8d7e6"/>
-    <text x="286" y="145" fill="#14293f" font-size="19" font-weight="700">Harness</text><text x="286" y="177" fill="#526a83" font-size="15">会话 · 工具 · 专家</text>
-    <rect x="492" y="108" width="176" height="112" rx="14" fill="#e9f7f5" stroke="#68c8bb"/>
-    <text x="510" y="145" fill="#14293f" font-size="19" font-weight="700">领域服务</text><text x="510" y="177" fill="#526a83" font-size="15">资源 · 授权 · 任务</text>
-    <rect x="716" y="108" width="176" height="112" rx="14" fill="#fff" stroke="#c8d7e6"/>
-    <text x="734" y="145" fill="#14293f" font-size="19" font-weight="700">受限执行</text><text x="734" y="177" fill="#526a83" font-size="15">节点 · 容器 · 构建</text>
-    <rect x="940" y="108" width="216" height="112" rx="14" fill="#fff" stroke="#c8d7e6"/>
-    <text x="958" y="145" fill="#14293f" font-size="19" font-weight="700">独立验收</text><text x="958" y="177" fill="#526a83" font-size="15">服务身份 · 测试 · 证据</text>
-    <path d="M220 164 H260 M444 164 H484 M668 164 H708 M892 164 H932" fill="none" stroke="#768fa9" stroke-width="2" marker-end="url(#arrow)"/>
-    <rect x="268" y="258" width="624" height="49" rx="11" fill="#e7edf4"/>
-    <text x="580" y="289" text-anchor="middle" fill="#415b76" font-size="15">会话历史、领域状态、任务日志和结果各自保存</text>
+  <rect width="1200" height="510" rx="24" fill="url(#background)"/>
+  <g font-family="'Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+    <text x="42" y="48" fill="#83e4d4" font-size="13" font-weight="700" letter-spacing="2">PILOT  /  TASK DELIVERY</text>
+    <text x="42" y="86" fill="#f2f7ff" font-size="25" font-weight="700">从业务目标到可验证的交付</text>
+    <text x="42" y="113" fill="#a7bbce" font-size="14">以任务和候选为主线，串联协作、执行与验收</text>
+
+    <g fill="#192e43" stroke="#37516a">
+      <rect x="42" y="154" width="210" height="128" rx="15"/>
+      <rect x="294" y="154" width="264" height="128" rx="15" fill="#1b4a4b" stroke="#68d3c1"/>
+      <rect x="600" y="154" width="264" height="128" rx="15"/>
+      <rect x="906" y="154" width="252" height="128" rx="15"/>
+    </g>
+    <g fill="#78dcca" font-size="12" font-weight="700">
+      <text x="62" y="182">01  交互</text><text x="314" y="182">02  协作</text>
+      <text x="620" y="182">03  管理</text><text x="926" y="182">04  交付</text>
+    </g>
+    <g fill="#f1f7ff" font-size="19" font-weight="700">
+      <text x="62" y="219">目标与方案</text><text x="314" y="219">Pilot 主控</text>
+      <text x="620" y="219">领域服务</text><text x="926" y="219">结果与证据</text>
+    </g>
+    <g fill="#afc2d3" font-size="14">
+      <text x="62" y="250">会话 · 表单 · 用户审阅</text><text x="314" y="250">规划 · 调度专家 · 汇总</text>
+      <text x="620" y="250">节点 · 资产 · 任务 · 候选</text><text x="926" y="250">指标 · 日志 · 验收报告</text>
+    </g>
+    <g fill="none" stroke="#76b8b9" stroke-width="2" marker-end="url(#arrow)">
+      <path d="M252 218 H285"/><path d="M558 218 H591"/><path d="M864 218 H897"/>
+      <path d="M426 282 V327"/><path d="M732 282 V327"/><path d="M864 374 H897"/><path d="M1032 336 V291"/>
+    </g>
+    <g fill="#14273a" stroke="#35536a">
+      <rect x="294" y="336" width="264" height="76" rx="12"/>
+      <rect x="600" y="336" width="264" height="76" rx="12"/>
+      <rect x="906" y="336" width="252" height="76" rx="12"/>
+    </g>
+    <g fill="#e8f3fa" font-size="15" font-weight="700">
+      <text x="314" y="365">Infra / Repo 专家</text><text x="620" y="365">节点 Worker / 容器</text><text x="926" y="365">独立验收</text>
+    </g>
+    <g fill="#9fb5c8" font-size="13">
+      <text x="314" y="390">资源诊断 · 源码与适配</text><text x="620" y="390">受限配方 · 执行记录</text><text x="926" y="390">身份核对 · 质量与性能</text>
+    </g>
+    <rect x="42" y="447" width="1116" height="1" fill="#36536b"/>
+    <text x="42" y="477" fill="#9fb8ca" font-size="14">会话与工具运行时支持交互，任务记录与实际测试证据支撑交付结论</text>
   </g>
 </svg>
