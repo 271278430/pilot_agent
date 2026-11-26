@@ -35,7 +35,8 @@ def test_ignore_private_state_without_ignoring_workspace_plugin(tmp_path):
         assert result.returncode in (0, 1)
         return result.returncode == 0
 
-    for path in (".local/resources/vault.key", ".env", "workspace/private.txt", "reports/output.json",
-                 "harness/runtime/node_modules/library/index.js"):
+    for path in (".local/resources/vault.key", ".env", ".env.production", "subdir/.env.local",
+                 "workspace/private.txt", "reports/output.json", "harness/runtime/node_modules/library/index.js"):
         assert ignored(path)
+    assert not ignored(".env.example")
     assert not ignored("harness/runtime/plugins/workspace/index.mjs")

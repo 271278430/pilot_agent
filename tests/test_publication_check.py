@@ -6,6 +6,8 @@ from scripts.check_publication import check_blob
 def test_private_paths_and_key_patterns_are_rejected():
     assert check_blob(".local/resources/vault.key", b"fixture")
     assert check_blob("workspace/output.txt", b"fixture")
+    assert check_blob("weights/model.safetensors", b"fixture")
+    assert check_blob("nested/.env.local", b"fixture")
     assert check_blob("src/module.py", b"-----BEGIN " + b"PRIVATE KEY-----")
     assert check_blob("config.txt", b"sk-" + b"A" * 32)
     assert check_blob("config.txt", b"api_key=" + b"'unguessable-credential-value'")

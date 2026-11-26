@@ -10,7 +10,7 @@ from urllib.parse import urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 PRIVATE_TOP = {".local", ".venv", "resources", "runs", "reports", "workspace", "workspaces", "upstream"}
 PRIVATE_PARTS = {"node_modules", "__pycache__", "private"}
-PRIVATE_SUFFIXES = {".pem", ".key", ".p12", ".pfx", ".sqlite", ".sqlite3", ".db"}
+PRIVATE_SUFFIXES = {".pem", ".key", ".p12", ".pfx", ".sqlite", ".sqlite3", ".db", ".safetensors"}
 KEY = re.compile(rb"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----")
 TOKEN = re.compile(rb"\b(?:sk-[A-Za-z0-9_-]{18,}|gh[pousr]_[A-Za-z0-9_]{20,}|github_pat_[A-Za-z0-9_]{30,}|AKIA[0-9A-Z]{16}|hf_[A-Za-z0-9]{25,}|xox[baprs]-[A-Za-z0-9-]{16,}|AIza[A-Za-z0-9_-]{35})\b")
 ASSIGNMENT = re.compile(rb"\b(?:api[_-]?key|secret[_-]?key|access[_-]?token|password)\s*[:=]\s*[\"']([^\"'\r\n]{8,})[\"']", re.I)
