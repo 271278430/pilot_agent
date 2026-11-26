@@ -1,6 +1,8 @@
 # Local credentials, state and outputs
 /.local/
-/.env
+.env
+.env.*
+!.env.example
 /.venv/
 /.cache/
 /.pytest_cache/
@@ -15,5 +17,13 @@
 **/__pycache__/
 *.py[cod]
 *.egg-info/
+*.pem
+*.key
+*.p12
+*.pfx
+*.sqlite
+*.sqlite3
+*.db
+*.safetensors
 /build/
 /dist/
